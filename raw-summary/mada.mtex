@@ -1,0 +1,228 @@
+# mada Zusammenfassung
+
+Privater Schlüssel: $$ (n,d) $$
+
+Öffentlicher Schlüssel: $$ (n,e) $$
+
+ $$ n = p * q \qquad Primzahlen\quad p \neq q,\ \ p>2,\ \ q>2$$
+
+ $$ e,d \in \mathbb{Z}^{*}_{\varphi(n)} \quad mit \ \ e*d \equiv 1 (\bmod{\varphi(n)})\quad\Leftrightarrow\quad e*d\equiv_{\varphi(n)}1\quad\Leftrightarrow\quad (e*d)\bmod{\varphi(n)}=1 $$ 
+ 
+## Zahlentheorie
+1) $$ \forall a \in \mathbb{Z} : 1 \mid a$$
+
+2) $$ \forall a,b \in \mathbb{Z} : a \mid b \Rightarrow (-a) \mid b $$ 
+
+3) $$ \forall a \in \mathbb{Z} : a \mid 0 $$
+
+4) $$ \forall a,b,c \in \mathbb{Z} : (a \mid b) \land (b \mid c) \Rightarrow a \mid c $$
+
+5) $$ \forall a,b,c \in \mathbb{Z} : (a \mid b) \land (a \mid c) \Rightarrow a \mid (b+c)  $$
+
+6) $$ \forall a,b,c,d \in \mathbb{Z} : (a \mid b) \land (c \mid d) \Rightarrow (a*b) \mid (b*d)  $$
+
+### Primzahl
+Zahl $$ n \in \mathbb{N} $$ heisst Primzahl, wenn sie genau zwei verschiedene Teiler in $$ \mathbb{N} $$ hat.
+
+Die ersten Primzahlen:  2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101
+
+**Primzahlensatz:** $$ \pi(n) $$ bezeichnet Anz. Primzahlen $$ \leq n $$. Dann gilt für $$ n \geq 55$$:
+
+ $$ \frac{n}{\ln n+2} < \pi(n) < \frac{n}{\ln n-4} $$
+
+### grösster gemeinsamer Teiler (ggT)
+ $$ ggT(a,b) := \max\{ x\in \mathbb{Z} \mid (x \mid a) \land (x \mid b)\} $$
+
+Für $$ \color{blue}{a,b \in \mathbb{N}}$$ gilt $$ a \mid b \Leftrightarrow ggT(a,b)=a $$
+
+Falls $$ ggT(a,b)=1 $$ dann heissen _a_ und _b_ teilerfremd
+
+Für alle $$ a \in \mathbb{N} $$ gilt $$ ggt(a,0) = a $$
+
+Der ggT kann mit _Primfaktorzerlegung_ oder dem _(erweiterten) euklidischen Algorithmus_ ermittelt werden.
+
+### Primfaktorzerlegung (mit Bsp.)
+Der ggT ist das Produkt aller Primfaktoren, die in beiden Zahlen vorkommen, potenziert mit der niedrigeren der beiden Potenzen.
+
+ $$ ggT(2079,5733) = ? \quad \rightarrow \quad 2079=3^3*7*11 \quad \& \quad 5733=3^2*7^2*13$$
+
+3^2 und 7 kommen in beiden Zahlen vor$$.\quad \Rightarrow \quad ggT(2079,5733)=3^2*7=63$$.
+
+### Eulersche $$ \varphi $$-Funktion
+Es sei $$ n\geq2 $$. Dann ist$$: \quad \mathbb{Z}^*_n = \{a\in\{0,1,\dotsc,n-1\}\mid ggT(a,n)=1\} $$
+
+Def.$$: \quad \varphi(n) = \vert\mathbb{Z}^*_n\vert \qquad\rightarrow $$ Gibt an wie viele zu _n_ teilerfremde nat. Zahlen kleiner als _n_ existieren.
+
+Bsp.$$: \quad \varphi(12) = \vert\{a\in\{0,1,\dotsc,11\}\mid ggt(a,12)=1\}\vert \quad=\quad \vert\{1,5,7,11\}\vert \quad=\quad 4 $$
+
+Es sei _p_ eine Primzahl, dann gilt$$: \quad \varphi(p) = p-1 $$
+
+Es sei $$ n \geq 2 $$ mit der Primfaktorzerlegung $$ n=p_1^{e_1}*\dotsm*p_k^{e_k}$$ 
+
+Dann gilt$$: \quad \varphi(n)=(p_1-1)*p_1^{e_1-1}*\dotsm*(p_k-1)*p_k^{e_k-1} $$
+
+Bsp.$$: \quad \varphi(12) = \varphi(2^2*3^1) = (2-1)*2^{2-1}*(3-1)*3^{1-1} = 4 $$
+
+### Modulo
+Es seien $$ n \in \mathbb{N} $$ und $$ a \in \mathbb{Z} $$.
+
+Es existiert genau ein  $$ q \in \mathbb{Z} $$ und ein $$ r \in \{0,1,\dotsc,n-1\} $$ mit $$ a=n*q+r $$.
+
+ $$ a\ \mathsf{div}\ n\ :=q \qquad \text{und} \qquad a\bmod{n}\ :=r $$
+
+Bem.$$ : \quad \text{a = (a div n)*n + (a mod n)} $$
+
+Bsp.$$ : \quad \text{10 div 4 = 2} \qquad \text{10 mod 4 = 2} \\ \ \ \quad \text{-1 div 4 = 3} \qquad \text{-1 mod 4 = 3} \quad \text{(da: -1 = -1 *4 +3})$$
+
+**Rechenregeln Modulo:**
+
+Es seien $$ n \in \mathbb{N} $$ und $$ a,b \in \mathbb{Z} $$.
+
+**1)** $$ a\bmod{n}=b\bmod{n} \ \  \Leftrightarrow \ \ n \mid (a-b) $$
+
+**2)** $$ a\bmod{n}=(a\bmod{n})\bmod{n} $$
+
+**3)** $$ (a+b)\bmod{n = ((a\bmod{n})+b)\bmod{n}} \\ (a+b)\bmod{n}=(a+(b\bmod{n}))\bmod{n} \\ (a+b)\bmod{n}=((a\bmod{n})+(b\bmod{n}))\bmod{n}$$
+
+**4)** $$ (a*b)\bmod{n} = ((a\bmod{n})*b)\bmod{n} \\ (a*b)\bmod{n} = (a*(b\bmod{n}))\bmod{n} \\ (a*b)\bmod{n} = ((a\bmod{n})*(b\bmod{n}))\bmod{n} \\ .$$
+
+
+**Definition:**  Es seien $$ n\in \mathbb{N} $$ und $$ a,b\in \mathbb{Z} $$
+
+Wir schreiben $$ \color{blue}{a \equiv b\ (\text{mod}\ n)} $$ oder $$ \color{blue}{a \equiv_n b} $$ falls $$ \color{blue}{\text{a mod n = b mod n}} $$  und sagen: "a ist kongurent zu b modulo n".
+
+Es sei $$ n\in \mathbb{Z} $$ dann ist  $$ \equiv_n $$ eine Äquivalenzrelation auf $$ \mathbb{Z} $$. Das heisst:
+
+**1)** $$ \equiv_n $$ ist refelxiv, d.h. $$ \forall a \in \mathbb{Z} : a \equiv_n a$$
+
+**2)** $$ \equiv_n $$ ist symmetrisch, d.h. $$ \forall a,b \in \mathbb{Z} : a \equiv_n b \Rightarrow b \equiv_n a $$
+
+**3)** $$ \equiv_n $$ ist transitiv, d.h. $$ \forall a,b,c \in \mathbb{Z} : (a\equiv_n b)\land(b\equiv_n c) \Rightarrow (a\equiv_n c) $$
+
+Äquivalenzklasse $$ [a]_n $$ enthält alle Elemente, die zu _a_ kongrugent modulo _n_ sind. 
+
+Bsp.$$ : \quad [7]_3 = \{a\in \mathbb{Z} \mid a\equiv_3 7\} = \{7,10,13,\dotsc\} \cup \{4,1,-2,-5,\dotsc\}$$
+
+**Rechenregeln $$ \equiv_n $$:**   (Es sei $$ n\in \mathbb{N} $$ und $$ a,b,c,d \in \mathbb{Z} $$)
+
+1) $$ a\equiv_n b \Leftrightarrow n \mid (a-b) $$
+
+2) Aus $$ a\equiv_n b $$ und $$ c\equiv_n d $$ folgt $$ a+c\equiv_n b+d $$ und $$ a*c \equiv_n b*d $$
+
+3) Aus $$ a*c \equiv_n b*c $$ folgt $$ a\equiv_m b $$ mit $$ m = \frac{n}{ggT(c,n)} $$ aber nicht: $$ a\equiv_n b $$
+
+### Erweiterter Euklidischer Algorithmus
+
+**Einfach:**
+
+![euklidischer Algorithmus - einfach](file:euklid_einfach.png)
+
+**Detailliert:**  Euklid(a,b)
+
+Vorbedingung: $$ a,b \in \mathbb{Z}, a \geq b \geq 0 $$
+
+1. Initialisierte Schleife $$: \quad a'=a \quad b'=b \quad x_0=1 \quad y_0=0 \quad x_1=0 \quad y_1=1 $$
+2. Jeweils $$ :\quad q=a'\ \text{div}\ b' \quad r=a'\bmod{b'}$$
+2. Schleife solange $$ b' \neq 0: \quad a'=b' \quad b'=r \quad x_0=x_1 \quad y_0=y_1 \quad x_1=x_0-q*x_1 \quad y_1=y_0-q*y_1 $$
+
+![Erweiterter Euklidischer Algorithmus detaillierte Tabelle](file:euklid2.png)
+
+Invariante $$ :\quad ggT(a,b) = ggT(a',b') \quad\mid\quad a'=x_0*a+y_0*b, \quad b'=x_1*a+y_1*b  \quad\mid\quad a'\geq b'\geq 0$$
+
+Nachbedingung $$ :\quad \boldsymbol{ggT(a,b)=a'=x_0*a+y_0*b} $$
+
+falls _d_ aus $$ d*e\equiv_m 1 $$ bestimmt werdern soll $$ :\quad d=y_0\bmod{m}; \quad a'=m; \quad b'=e; \quad \boldsymbol{ggT=1}$$
+
+> Es sei $$ m\in \mathbb{N}\ \ \text{mit}\ \ m\geq 2\ \ \text{und}\ \ e\in \mathbb{Z}_m=\{0,1,\dotsc,m-1\}$$
+
+> Dann existiert $$ d\in \mathbb{Z}_m\ \ \text{mit}\ \ e*d\equiv_m 1 \ \ \text{genau dann, wenn}\ \ ggT(m,e)=1\ \ \text{also}\ \ e\in \mathbb{Z}_m^* $$
+
+> Dann ist auch $$ d\in \mathbb{Z}_m^* $$
+
+> mit Euklid $$ :\quad 1=ggT(m,e)=x_0*m+y_0*e\quad\Rightarrow\ \ \ y_0*e\equiv_m 1 \quad\Leftrightarrow\quad 1=(y_0*e)\bmod{m} $$
+
+### Modulare Exponentation
+
+Effizient $$ \boldsymbol{x^e\bmod m} $$ berechnen bei $$ e,m\in \mathbb{N}, x\in \mathbb{Z} $$
+
+Ansatz: _(a*b) mod n = (a mod n * b)_ und "zwischendurch" schon _mod m_ rechnen. aber besser:
+
+### Schnelle Exponation
+
+Idee: Nutze $$ x^{2^k}=(((x^2)^2)^{2 \dotsm})^2 \qquad $$ 
+
+Zerlege den Exponenten in eine Summe von Zweierpotenzen!  Bsp $$ :\quad 13=2^3+2^2+2^0 \quad\Rightarrow x^{13}=x^{2^3}*x^{2^2}*x^{2^0} \\ \ \ \quad\text{Beachte: } 13=(1101)_2 \quad (\rightarrow \text{Binärdarstellung})$$
+
+Wir gehen von hinten nach vorne über die Binärdarstellung, quadrieren jedesmal und multiplizieren, falls das Bit 1 ist.
+
+**Algorithmus:** Eingabe: $$ x^e\text{mod m}\quad\mid\quad x\in \mathbb{Z},\ m\in \mathbb{N},\ e\in \mathbb{N}\quad\text{mit Binärdarstellung } e=(b(0)b(1)\dotsc b(l))_2 $$
+
+1. Initialisierung $$ :\quad i=l;\ h=1;\ k=x $$
+2. iteriertes Quadrieren: $$\text{solange } i\geq 0 \\ \quad\text{falls } b(i)=1\ \ \rightarrow\ \ h=h*k\bmod{m} \\ \quad k=k^2\bmod{m} \\ \quad i=i-1 $$
+3. Ergebnis: _h_
+
+![schnelle exponentation](file:schnelle_exponentation.png)
+
+## Gruppentheorie
+### Verknüpfung
+Die Verknüpfung $$ \circ $$ auf (oder in) einer Menge _M_ ist eine Vorschrift, die je zwei Elementen _a_ und _b_ aus _M_ (unter Beobachtung der Reihenfolge ein weiteres Element _c_ von _M_ zuordnet, also eine Abbildung: $$ M \times M \rightarrow M $$.
+
+Die Tatsache, dass $$ a\circ b $$ für $$ a,b\in M $$ wieder ein Element von _M_ ist, bezeichnet man als Abgeschlossenheit von M bzgl. $$ \circ $$.
+
+Anstelle von $$ \circ $$ wird auch $$ \oplus, \odot, *, +, \cdot, \dotsc $$ verwendet.
+
+Nachfolgend stets: **Annahme:** $$ \boldsymbol{M\neq 0} $$
+
+**Def.: ** Es sei $$ M $$ eine Menge und $$ f $$ eine Famili von Verknüpfungen auf $$ M $$. Dann heisst $$ (M,f) $$ algebraische Struktur.
+
+**Halbgruppen -- Def.:** Es sei $$ M $$ eine Menge und $$ \circ $$ eine Verknüpfung auf $$ M $$. $$ (M,\circ) $$ heisst Halbgruppe, falls $$ \circ $$ assiozativ ist, 
+> d.h. wenn $$ \forall a,b,c \in M $$ gilt $$ (a\circ b)\circ c=a\circ (b\circ c) $$.
+
+**Monoide -- Def.:** Eine Halbgruppe $$ (M,\circ) $$ heisst Monoid, falls ein Element $$ e\in M $$ existiert mit $$ e\circ a= a\circ e=a \mid \forall a\in M.$$
+> $$e $$ heisst dann neutrales Element und ist eindeutig bestimmt.
+
+**Gruppen -- Def.:** Ein Monoid $$ (M,\circ) $$ heisst Gruppe, falls für alls $$ a\in M $$ ein Element $$ i\in M $$ existiert mit $$ i\circ a = a\circ i=e $$, wobei $$ e $$ das eindeutige neutrale Element ist.
+>  $$ i $$ heisst dann Inverses von a. Wir schreiben dafür $$ a^{-1} $$ (lediglich Abkürzung!)
+
+Menge $$ M $$ mit einer Verknüpfung $$ \circ $$ ist also genau dann eine Gruppe, wenn:
+
+1. $$ M $$ ist abgeschlossen bzgl $$ \circ $$, d.h. $$ a\circ b \in M \quad\mid\forall a,b \in M $$
+2. $$ \circ $$ ist assoziativ, d.h. $$ (a\circ b)\circ c=a\circ(b\circ c) \quad\mid\forall a,b,c \in M $$
+3. Es existiert ein neutrales Element $$ e\in M $$, d.h. $$ a\circ e=e\circ a=a \quad\mid\forall a\in M $$
+4. Für alle $$ a\in M $$ existiert ein inverses Element $$ a^{-1}\in M, \quad \text{d.h. }\ a^{-1}\circ a=a\circ a^{-1}=e $$
+
+---
+
+##Kurz
+ $$ \text{public key: } (n,e)\quad\text{private key: }(n,d)\quad e*d\equiv 1\bmod{\varphi(n)}$$
+
+1.   $$ \varphi(n) $$ bestimmen
+2. _d_ mittels erw. eukl.Algo. mit $$ \varphi(n)=a',\ \ e=b' $$
+3.   $$ d=y_0\bmod{\varphi(n)} $$
+4. entschlüsseln von y mit $$ y^d\bmod{n} $$ mit schneller Exponation.
+
+**ver-, entschlüsseln:** $$ x=y^d\bmod{n};\quad y=x^e\bmod{n};\quad (x^e\bmod{n})^d\bmod{n}=x \to  $$ schnelle Exponation
+
+---
+## Beweise
+**Zahlentheorie**
+
+**(1)** $$ \color{blue}{\forall a,b \in \mathbb{Z} : a \mid b \Rightarrow (-a) \mid b} \\ a\mid b \rightarrow\exists k \in\mathbb{Z}: b=k*a \\ \qquad\Rightarrow b=\underbrace{(-k)}_{\in\mathbb{Z}}*(-a) \\ \qquad\Rightarrow (-a)\mid b$$
+
+---
+**(4)** $$ \color{blue}{\forall a,b,c \in \mathbb{Z} : (a \mid b) \land (b \mid c) \Rightarrow a \mid c} \\ a\mid b \rightarrow\exists k_1\in\mathbb{Z}: b=k_1*a \\ b\mid c \rightarrow\exists k_2\in\mathbb{Z}: c=k_2*b \\ \qquad\Rightarrow c=\underbrace{(k_1*k_2)}_{\in\mathbb{Z}}*a \\ \qquad\Rightarrow a\mid c $$ 
+
+---
+**(5)** $$ \color{blue}{\forall a,b,c \in \mathbb{Z} : (a \mid b) \land (a \mid c) \Rightarrow a \mid (b+c)} \\ a\mid b \rightarrow\exists k_1\in\mathbb{Z}: b=k_1*a \\ a\mid c \rightarrow\exists k_2\in\mathbb{Z}: c=k_2*a \\ \qquad\Rightarrow b+c=\underbrace{(k_1+k_2)}_{\in\mathbb{Z}}*a \\ \qquad\Rightarrow a\mid (b+c)$$
+
+---
+**(6)** $$ \color{blue}{\forall a,b,c,d \in \mathbb{Z} : (a \mid b) \land (c \mid d) \Rightarrow (a*c) \mid (b*d)} \\ a\mid b \rightarrow\exists k_1\in\mathbb{Z}: b=k_1*a \\ c\mid d \rightarrow\exists k_2\in\mathbb{Z}: d=k_2*c \\ \qquad\Rightarrow b*d=(k_1*a*k_2*c)=\underbrace{(k_1*k_2)}_{\in\mathbb{Z}}*(a*c) \\ \qquad\Rightarrow (a*c)\mid (b*d) $$
+
+---
+**Rechenregel Modulo**
+
+**(1)** $$ \color{blue}{a\bmod{n}=b\bmod{n} \ \  \Leftrightarrow \ \ n \mid (a-b)} \\ \text{Zuerst zeigen: }a\bmod{n}=b\bmod{n} \Rightarrow n\mid (a-b) \\ \rightarrowtail a=(a\text{ div }n)*n + (a\bmod{n}) \\ \rightarrowtail b=(b\text{ div }n)*n+(b\bmod{n}) \\ \Rightarrow a-b = (a\text{ div } n - b\text{ div }n)*n+\underbrace{a\bmod{n}-b\bmod{n}}_{\text{0, nach Voraussetzung}} \\ \Rightarrow a-b=\underbrace{(a\text{ div }n-b\text{ div }n)}_{\in\mathbb{Z}}*n \\ \Rightarrow n\mid (a-b)\\ \text{dann: }n\mid (a-b) \Rightarrow a\bmod{n}=b\bmod{n} \\ \rightarrowtail\exists k\in\mathbb{Z}: a-b=k*n \\ \Rightarrow a=\color{green}{b}+k*n=\color{green}{(b\text{ div }n)*n+b\bmod{n}}+k*n \\ \Rightarrow a=(b\text{ div }n +k)*n+\color{red}{b\bmod{n}} \\ \Rightarrow nach Def.: a=(a\text{ div }n+\color{red}{a\bmod{n}})\\ \color{red}{\text{müssen übereinstimmen, da es genau 1 Darstellung von a als Vielfachen von n plus Rest gibt.}}$$
+
+**(2)** $$ \color{blue}{a\bmod{n}=(a\bmod{n})\bmod{n}}\\ \text{Gemäss (1) reicht zu zeigen, dass:}\\ n\mid \underbrace{(a-(a\bmod{n}))}_{(a \text{ div }n)*n} \\ \text{Offensichtlich Vielfachen von n} $$
+
+
